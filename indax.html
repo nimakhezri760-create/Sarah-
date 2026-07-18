@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لنگرگاه | مرکز مشاوره و رواندرمانی</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pine-dark:#203B35;
+    --pine-mid:#375C53;
+    --pine-line:#4C7367;
+    --sage:#8FA48F;
+    --sand:#E4D9C6;
+    --cream:#F5F3EC;
+    --rose:#AD6F5E;
+    --rose-dark:#8F5646;
+    --text-dark:#202B27;
+    --text-soft:#4B5854;
+    --text-light:#F5F4EE;
+    --radius:18px;
+    --ease:cubic-bezier(.22,1,.36,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Vazirmatn',sans-serif;
+    background:var(--cream);
+    color:var(--text-dark);
+    line-height:1.9;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  .display{font-family:'Aref Ruqaa',serif;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+  ::selection{background:var(--rose);color:var(--text-light);}
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline:2px solid var(--rose);
+    outline-offset:3px;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:fixed; inset:0 0 auto 0; z-index:100;
+    background:rgba(245,243,236,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(32,59,53,0.08);
+    transition:background .3s var(--ease);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px; max-width:1120px; margin:0 auto;
+  }
+  .logo{
+    font-family:'Aref Ruqaa',serif;
+    font-size:1.6rem; font-weight:700; color:var(--pine-dark);
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo span.dot{
+    width:9px;height:9px;border-radius:50%;background:var(--rose);
+    display:inline-block;
+  }
+  nav.links{display:flex; gap:34px; font-size:.95rem; font-weight:500;}
+  nav.links a{position:relative; color:var(--pine-dark); padding:4px 0;}
+  nav.links a::after{
+    content:''; position:absolute; right:0; bottom:-2px; width:0; height:1px;
+    background:var(--rose); transition:width .3s var(--ease);
+  }
+  nav.links a:hover::after{width:100%;}
+  .nav-cta{
+    background:var(--pine-dark); color:var(--text-light);
+    padding:10px 22px; border-radius:999px; font-size:.9rem; font-weight:600;
+    transition:background .25s var(--ease), transform .25s var(--ease);
+  }
+  .nav-cta:hover{background:var(--rose); transform:translateY(-1px);}
+  .burger{display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px;}
+  .burger span{width:24px;height:2px;background:var(--pine-dark);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height:100vh;
+    background:radial-gradient(120% 100% at 20% 0%, #2C4A43 0%, #20342F 55%, #182722 100%);
+    color:var(--text-light);
+    display:flex; align-items:center;
+    padding-top:110px; padding-bottom:60px;
+    position:relative; overflow:hidden;
+  }
+  .hero::before{
+    content:'';
+    position:absolute; inset:0;
+    background-image:radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size:26px 26px;
+    opacity:.5;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.1fr .9fr; gap:56px; align-items:center;
+    position:relative; z-index:2;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:.82rem; letter-spacing:.03em; color:var(--sage);
+    border:1px solid rgba(143,164,143,0.4); padding:6px 16px; border-radius:999px;
+    margin-bottom:26px;
+  }
+  .hero h1{
+    font-family:'Aref Ruqaa',serif;
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    font-weight:700; line-height:1.5;
+    margin-bottom:22px;
+  }
+  .hero h1 em{font-style:normal; color:var(--sand);}
+  .hero p.lead{
+    font-size:1.08rem; color:#D7DFD9; max-width:520px; margin-bottom:34px;
+  }
+  .btn-row{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 28px; border-radius:999px; font-weight:600; font-size:.95rem;
+    transition:transform .25s var(--ease), background .25s var(--ease), box-shadow .25s var(--ease);
+    border:none; cursor:pointer;
+  }
+  .btn-primary{background:var(--rose); color:#fff;}
+  .btn-primary:hover{background:var(--rose-dark); transform:translateY(-2px); box-shadow:0 12px 26px rgba(173,111,94,0.35);}
+  .btn-ghost{background:transparent; color:var(--text-light); border:1px solid rgba(255,255,255,0.35);}
+  .btn-ghost:hover{background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.6);}
+
+  /* breathing anchor */
+  .breathe-wrap{
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    position:relative;
+  }
+  .breathe-ring{
+    width:min(300px, 70vw); height:min(300px, 70vw); border-radius:50%;
+    border:1px solid rgba(228,217,198,0.25);
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+  }
+  .breathe-ring::before{
+    content:''; position:absolute; inset:24px; border-radius:50%;
+    border:1px solid rgba(228,217,198,0.18);
+  }
+  .breathe-core{
+    width:46%; height:46%; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #C9A98A 0%, var(--rose) 55%, var(--rose-dark) 100%);
+    box-shadow:0 0 60px rgba(173,111,94,0.45);
+    animation:breathe 12s var(--ease) infinite;
+  }
+  @keyframes breathe{
+    0%{transform:scale(.72);}
+    33%{transform:scale(1);}
+    50%{transform:scale(1);}
+    83%{transform:scale(.72);}
+    100%{transform:scale(.72);}
+  }
+  .breathe-label{
+    margin-top:22px; font-size:.85rem; letter-spacing:.05em; color:var(--sand);
+    min-height:1.4em;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .breathe-core{animation:none;}
+  }
+
+  section{padding:104px 0;}
+  .kicker{
+    font-size:.82rem; font-weight:700; letter-spacing:.06em; color:var(--rose);
+    margin-bottom:14px; display:block;
+  }
+  h2.section-title{
+    font-family:'Aref Ruqaa',serif; font-size:clamp(1.9rem,3.4vw,2.6rem);
+    color:var(--pine-dark); font-weight:700; margin-bottom:18px;
+  }
+  p.section-sub{color:var(--text-soft); max-width:620px; font-size:1.02rem;}
+
+  /* reveal */
+  .reveal{opacity:0; transform:translateY(26px); transition:opacity .8s var(--ease), transform .8s var(--ease);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- About ---------- */
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; margin-top:52px;}
+  .stat-list{display:grid; grid-template-columns:1fr 1fr; gap:30px; margin-top:8px;}
+  .stat-list div{border-right:2px solid var(--rose); padding-right:16px;}
+  .stat-list b{display:block; font-size:1.9rem; color:var(--pine-dark); font-weight:800;}
+  .stat-list span{font-size:.88rem; color:var(--text-soft);}
+  .about-body p{color:var(--text-soft); margin-bottom:16px;}
+
+  /* ---------- Services ---------- */
+  .services{background:var(--pine-dark); color:var(--text-light);}
+  .services .kicker{color:var(--sage);}
+  .services h2.section-title{color:var(--text-light);}
+  .services p.section-sub{color:#C9D2CC;}
+  .card-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:22px; margin-top:52px;
+  }
+  .service-card{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:var(--radius);
+    padding:30px 24px;
+    transition:transform .35s var(--ease), background .35s var(--ease), border-color .35s var(--ease);
+  }
+  .service-card:hover{
+    transform:translateY(-8px);
+    background:rgba(255,255,255,0.07);
+    border-color:rgba(228,217,198,0.4);
+  }
+  .service-icon{
+    width:48px; height:48px; border-radius:50%;
+    background:linear-gradient(135deg, var(--rose), var(--rose-dark));
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:20px; font-size:1.3rem;
+  }
+  .service-card h3{font-size:1.08rem; margin-bottom:10px; font-weight:700;}
+  .service-card p{font-size:.9rem; color:#C9D2CC;}
+
+  /* ---------- Process ---------- */
+  .process-list{margin-top:56px; display:flex; flex-direction:column;}
+  .process-item{
+    display:grid; grid-template-columns:90px 1fr; gap:28px;
+    padding:30px 0; border-bottom:1px solid rgba(32,59,53,0.12);
+    align-items:start;
+  }
+  .process-item:first-child{border-top:1px solid rgba(32,59,53,0.12);}
+  .process-num{
+    font-family:'Aref Ruqaa',serif; font-size:2.4rem; color:var(--sage); font-weight:700;
+  }
+  .process-item h3{font-size:1.15rem; margin-bottom:8px; color:var(--pine-dark);}
+  .process-item p{color:var(--text-soft); max-width:560px; font-size:.96rem;}
+
+  /* ---------- Counselors ---------- */
+  .counselor-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px; margin-top:52px;}
+  .counselor-card{
+    background:#fff; border-radius:var(--radius); overflow:hidden;
+    border:1px solid rgba(32,59,53,0.08);
+    transition:box-shadow .3s var(--ease), transform .3s var(--ease);
+  }
+  .counselor-card:hover{box-shadow:0 20px 40px rgba(32,59,53,0.12); transform:translateY(-6px);}
+  .counselor-avatar{
+    height:180px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Aref Ruqaa',serif; font-size:2.4rem; font-weight:700; color:#fff;
+  }
+  .counselor-info{padding:22px 24px;}
+  .counselor-info h3{font-size:1.05rem; color:var(--pine-dark); margin-bottom:4px;}
+  .counselor-info span{font-size:.85rem; color:var(--rose-dark); font-weight:600;}
+  .counselor-info p{font-size:.88rem; color:var(--text-soft); margin-top:10px;}
+
+  /* ---------- Testimonials ---------- */
+  .testimonials{background:var(--sand);}
+  .quote-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:52px;}
+  .quote-card{
+    background:var(--cream); border-radius:var(--radius); padding:30px 26px;
+    position:relative;
+  }
+  .quote-card::before{
+    content:'\201C'; font-family:'Aref Ruqaa',serif; font-size:3.4rem; color:var(--rose);
+    position:absolute; top:6px; right:20px; opacity:.5;
+  }
+  .quote-card p{font-size:.96rem; color:var(--text-dark); margin-bottom:18px; position:relative; z-index:1;}
+  .quote-who{font-size:.85rem; color:var(--text-soft); font-weight:600;}
+
+  /* ---------- Contact ---------- */
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:64px; margin-top:52px; align-items:start;}
+  .contact-info div{margin-bottom:26px;}
+  .contact-info b{display:block; font-size:.9rem; color:var(--pine-dark); margin-bottom:4px;}
+  .contact-info span{color:var(--text-soft); font-size:.95rem;}
+  form{display:flex; flex-direction:column; gap:16px;}
+  .field{display:flex; flex-direction:column; gap:6px;}
+  .field label{font-size:.85rem; color:var(--pine-dark); font-weight:600;}
+  .field input, .field textarea, .field select{
+    border:1px solid rgba(32,59,53,0.18); border-radius:12px; padding:13px 16px;
+    font-family:inherit; font-size:.95rem; background:#fff; color:var(--text-dark);
+    transition:border-color .25s var(--ease);
+  }
+  .field input:focus, .field textarea:focus, .field select:focus{
+    border-color:var(--rose); outline:none;
+  }
+  .field textarea{resize:vertical; min-height:110px;}
+  .submit-btn{align-self:flex-start; margin-top:6px;}
+  .form-note{font-size:.82rem; color:var(--text-soft); margin-top:8px; min-height:1.2em;}
+
+  footer{
+    background:var(--pine-dark); color:#C9D2CC; padding:56px 0 28px;
+  }
+  .footer-grid{display:flex; justify-content:space-between; flex-wrap:wrap; gap:32px; padding-bottom:36px; border-bottom:1px solid rgba(255,255,255,0.1);}
+  .footer-logo{font-family:'Aref Ruqaa',serif; font-size:1.5rem; color:#fff; margin-bottom:10px;}
+  .footer-col h4{color:#fff; font-size:.9rem; margin-bottom:14px;}
+  .footer-col a{display:block; font-size:.88rem; margin-bottom:9px; color:#C9D2CC;}
+  .footer-col a:hover{color:var(--rose);}
+  .footer-bottom{padding-top:22px; font-size:.8rem; text-align:center; color:#8FA48F;}
+
+  @media (max-width: 900px){
+    .hero-grid{grid-template-columns:1fr; gap:44px;}
+    .about-grid, .contact-grid{grid-template-columns:1fr; gap:36px;}
+    .card-grid{grid-template-columns:repeat(2,1fr);}
+    .counselor-grid, .quote-grid{grid-template-columns:1fr 1fr;}
+    nav.links{
+      display:none; position:absolute; top:100%; right:0; left:0;
+      background:var(--cream); flex-direction:column; gap:0;
+      padding:10px 24px 20px; border-bottom:1px solid rgba(32,59,53,0.1);
+    }
+    nav.links.open{display:flex;}
+    nav.links a{padding:12px 0; border-bottom:1px solid rgba(32,59,53,0.06);}
+    .burger{display:flex;}
+  }
+  @media (max-width: 560px){
+    section{padding:72px 0;}
+    .card-grid{grid-template-columns:1fr;}
+    .counselor-grid, .quote-grid{grid-template-columns:1fr;}
+    .process-item{grid-template-columns:56px 1fr; gap:16px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo"><span class="dot"></span>لنگرگاه</div>
+    <nav class="links">
+      <a href="#about">درباره ما</a>
+      <a href="#services">خدمات</a>
+      <a href="#process">روند مشاوره</a>
+      <a href="#counselors">مشاوران</a>
+      <a href="#contact">تماس</a>
+    </nav>
+    <a href="#contact" class="nav-cta">رزرو جلسه</a>
+    <button class="burger" aria-label="باز کردن منو" onclick="document.querySelector('.links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">مرکز مشاوره و رواندرمانی لنگرگاه</span>
+      <h1>گاهی ذهن به یک <em>لنگرگاه</em> نیاز دارد<br>نه یک توفان دیگر</h1>
+      <p class="lead">در لنگرگاه، فضایی امن و بدون قضاوت برای گفتن، شنیده‌شدن و از نو ساختن فراهم می‌کنیم؛ با مشاورانی که در کنار شما می‌مانند تا مسیر را با آرامش طی کنید.</p>
+      <div class="btn-row">
+        <a href="#contact" class="btn btn-primary">رزرو اولین جلسه</a>
+        <a href="#services" class="btn btn-ghost">آشنایی با خدمات</a>
+      </div>
+    </div>
+    <div class="breathe-wrap">
+      <div class="breathe-ring"><div class="breathe-core"></div></div>
+      <div class="breathe-label" id="breatheLabel">دم بگیرید...</div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <span class="kicker">درباره لنگرگاه</span>
+      <h2 class="section-title">جایی برای توقف، نه فرار</h2>
+      <p class="section-sub">لنگرگاه از سال ۱۳۹۸ با هدف در دسترس‌قرار‌دادن مشاوره‌ی روانشناسی باکیفیت و انسانی شکل گرفت؛ جایی دور از فضای سرد کلینیک‌های معمول.</p>
+      <div class="stat-list">
+        <div><b>۷+</b><span>سال تجربه‌ی بالینی تیم</span></div>
+        <div><b>۱۲۰۰+</b><span>جلسه‌ی برگزارشده</span></div>
+        <div><b>۶</b><span>متخصص فعال</span></div>
+        <div><b>۴.۹/۵</b><span>رضایت مراجعان</span></div>
+      </div>
+    </div>
+    <div class="about-body reveal">
+      <p>ما باور داریم که هر انسان، فارغ از شدت مشکل، لایق فضایی امن برای شنیده‌شدن است. تیم ما ترکیبی از روان‌شناسان بالینی، مشاوران خانواده و متخصصان کودک و نوجوان است که با رویکردهای علمی و به‌روز کار می‌کنند.</p>
+      <p>جلسات به‌صورت حضوری در دفتر لنگرگاه و همچنین به‌صورت آنلاین برگزار می‌شود تا فاصله، مانع دسترسی شما به آرامش نشود.</p>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <span class="kicker">خدمات ما</span>
+    <h2 class="section-title reveal">مسیری متناسب با موقعیت شما</h2>
+    <p class="section-sub reveal">هر مراجع داستان خودش را دارد؛ خدمات ما بر همین اساس طراحی شده‌اند.</p>
+    <div class="card-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">🌿</div>
+        <h3>مشاوره فردی</h3>
+        <p>برای اضطراب، افسردگی، استرس شغلی و بحران‌های شخصی؛ در فضایی محرمانه و بدون قضاوت.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🤝</div>
+        <h3>مشاوره زوج</h3>
+        <p>بازسازی ارتباط، حل تعارض و تقویت صمیمیت با رویکردهای اثبات‌شده زوج‌درمانی.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🏠</div>
+        <h3>خانواده‌درمانی</h3>
+        <p>برای بهبود پویایی خانواده، تربیت فرزند و عبور مشترک از بحران‌های خانوادگی.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🌱</div>
+        <h3>نوجوان و جوان</h3>
+        <p>فضایی هم‌سطح و صمیمی برای نوجوانانی که می‌خواهند حرف بزنند، نه اینکه نصیحت بشنوند.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <span class="kicker">روند مشاوره</span>
+    <h2 class="section-title reveal">از اولین تماس تا اولین آرامش</h2>
+    <p class="section-sub reveal">مسیری شفاف و بدون پیچیدگی، تا از همان قدم اول بدانید در جریان چه چیزی هستید.</p>
+    <div class="process-list">
+      <div class="process-item reveal">
+        <div class="process-num">۰۱</div>
+        <div><h3>تماس اولیه و تعیین وقت</h3><p>با پر کردن فرم یا تماس تلفنی، نیاز شما را می‌شنویم و مناسب‌ترین مشاور را پیشنهاد می‌دهیم.</p></div>
+      </div>
+      <div class="process-item reveal">
+        <div class="process-num">۰۲</div>
+        <div><h3>جلسه ارزیابی</h3><p>در اولین جلسه، بدون فشار، درباره شرایط‌تان صحبت می‌کنیم و مسیر درمانی مشخص می‌شود.</p></div>
+      </div>
+      <div class="process-item reveal">
+        <div class="process-num">۰۳</div>
+        <div><h3>برنامه‌ی مشاوره</h3><p>جلسات منظم هفتگی یا دوهفتگی، با بازبینی دوره‌ای پیشرفت و تنظیم مسیر در صورت نیاز.</p></div>
+      </div>
+      <div class="process-item reveal">
+        <div class="process-num">۰۴</div>
+        <div><h3>پیگیری پس از پایان</h3><p>حتی بعد از پایان دوره، در صورت نیاز به مشاوره‌های کوتاه پیگیری در دسترس هستیم.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="counselors" style="background:var(--sand);">
+  <div class="wrap">
+    <span class="kicker">تیم ما</span>
+    <h2 class="section-title reveal">مشاورانی که همراه شما می‌مانند</h2>
+    <p class="section-sub reveal">هر یک از اعضای تیم، حوزه تخصصی مشخصی دارند تا بهترین تطابق برای شما پیدا شود.</p>
+    <div class="counselor-grid">
+      <div class="counselor-card reveal">
+        <div class="counselor-avatar" style="background:linear-gradient(135deg,#8FA48F,#4C7367);">م.ح</div>
+        <div class="counselor-info">
+          <h3>دکتر مریم حسینی</h3>
+          <span>روان‌شناس بالینی</span>
+          <p>متخصص اضطراب و افسردگی با رویکرد شناختی-رفتاری، بیش از ۹ سال سابقه.</p>
+        </div>
+      </div>
+      <div class="counselor-card reveal">
+        <div class="counselor-avatar" style="background:linear-gradient(135deg,#AD6F5E,#8F5646);">ع.ک</div>
+        <div class="counselor-info">
+          <h3>علی کریمی</h3>
+          <span>مشاور زوج و خانواده</span>
+          <p>فعال در حوزه زوج‌درمانی هیجان‌محور و بازسازی روابط پس از بحران.</p>
+        </div>
+      </div>
+      <div class="counselor-card reveal">
+        <div class="counselor-avatar" style="background:linear-gradient(135deg,#375C53,#20342F);">س.ن</div>
+        <div class="counselor-info">
+          <h3>سارا نجفی</h3>
+          <span>متخصص نوجوان و کودک</span>
+          <p>کار با نوجوانان در زمینه هویت، اضطراب اجتماعی و چالش‌های تحصیلی.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="wrap">
+    <span class="kicker">تجربه مراجعان</span>
+    <h2 class="section-title reveal">آنچه دیگران تجربه کرده‌اند</h2>
+    <div class="quote-grid">
+      <div class="quote-card reveal">
+        <p>اولین جایی بود که احساس کردم بدون قضاوت شنیده می‌شوم. مسیر درمانم خیلی روشن و قدم‌به‌قدم پیش رفت.</p>
+        <div class="quote-who">مراجع، ۲۸ ساله</div>
+      </div>
+      <div class="quote-card reveal">
+        <p>جلسات زوج‌درمانی زندگی مشترک ما را از نو تعریف کرد. با ابزارهای ساده‌ای که یاد گرفتیم، ارتباط‌مان بهتر شد.</p>
+        <div class="quote-who">زوج مراجع</div>
+      </div>
+      <div class="quote-card reveal">
+        <p>پسرم با مشاور نوجوان اینجا راحت‌تر حرف می‌زد تا با من. این خودش یک پیشرفت بزرگ بود.</p>
+        <div class="quote-who">والد یکی از مراجعان</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact-grid">
+    <div class="reveal">
+      <span class="kicker">تماس با ما</span>
+      <h2 class="section-title">اولین قدم را همین امروز بردارید</h2>
+      <p class="section-sub" style="margin-bottom:36px;">فرم زیر را پر کنید تا در کوتاه‌ترین زمان با شما هماهنگ کنیم؛ یا مستقیم تماس بگیرید.</p>
+      <div class="contact-info">
+        <div><b>تلفن</b><span>۰۲۱-۱۲۳۴۵۶۷۸</span></div>
+        <div><b>آدرس</b><span>تهران، خیابان ولیعصر، نرسیده به میدان ونک، ساختمان لنگرگاه</span></div>
+        <div><b>ساعات پذیرش</b><span>شنبه تا پنج‌شنبه، ۹ صبح تا ۸ شب</span></div>
+      </div>
+    </div>
+    <form class="reveal" id="contactForm">
+      <div class="field">
+        <label for="name">نام و نام خانوادگی</label>
+        <input type="text" id="name" required placeholder="مثلاً سارا احمدی">
+      </div>
+      <div class="field">
+        <label for="phone">شماره تماس</label>
+        <input type="tel" id="phone" required placeholder="۰۹۱۲۱۲۳۴۵۶۷">
+      </div>
+      <div class="field">
+        <label for="service">نوع مشاوره</label>
+        <select id="service">
+          <option>مشاوره فردی</option>
+          <option>مشاوره زوج</option>
+          <option>خانواده‌درمانی</option>
+          <option>نوجوان و جوان</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="message">پیام شما (اختیاری)</label>
+        <textarea id="message" placeholder="کمی درباره چیزی که به دنبالش هستید بنویسید..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary submit-btn">ارسال درخواست</button>
+      <div class="form-note" id="formNote"></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">لنگرگاه</div>
+        <p style="max-width:260px; font-size:.88rem;">مرکز مشاوره و رواندرمانی؛ فضایی امن برای شنیده‌شدن.</p>
+      </div>
+      <div class="footer-col">
+        <h4>دسترسی سریع</h4>
+        <a href="#about">درباره ما</a>
+        <a href="#services">خدمات</a>
+        <a href="#counselors">مشاوران</a>
+      </div>
+      <div class="footer-col">
+        <h4>ارتباط</h4>
+        <a href="#contact">فرم تماس</a>
+        <a href="tel:02112345678">۰۲۱-۱۲۳۴۵۶۷۸</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© ۱۴۰۳ لنگرگاه — تمامی حقوق محفوظ است.</div>
+  </div>
+</footer>
+
+<script>
+  // scroll reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // breathing label cycle synced loosely with 12s ring animation (4s in / 2s hold / 4s out / 2s hold)
+  const label = document.getElementById('breatheLabel');
+  const phases = [
+    {text:'دم بگیرید...', dur:4000},
+    {text:'نگه دارید...', dur:2000},
+    {text:'بازدم کنید...', dur:4000},
+    {text:'آرام باشید...', dur:2000},
+  ];
+  let p = 0;
+  function cyclePhase(){
+    label.textContent = phases[p].text;
+    setTimeout(()=>{ p = (p+1)%phases.length; cyclePhase(); }, phases[p].dur);
+  }
+  cyclePhase();
+
+  // mobile menu
+  document.addEventListener('click', (e)=>{
+    if(!e.target.closest('.links') && !e.target.closest('.burger')){
+      document.querySelector('.links').classList.remove('open');
+    }
+  });
+
+  // contact form (front-end only demo)
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('formNote').textContent = 'درخواست شما ثبت شد. به‌زودی با شما تماس می‌گیریم.';
+    this.reset();
+  });
+</script>
+</body>
+</html>
